@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Pokedex API Documentation</title>
+    <link rel="stylesheet" type="text/css" href="doc-style.css">
+</head>
+
+<body>
+    <h1>Pokedex API Documentation</h1>
+    <h2>by Aidan Kamp</h2>
+    <a href="/client.html">Back to Client Page</a>
+
+    <div id="getAllPokemon">
+        <h3>/api/getAllPokemon</h3>
+        <h4>Query Params</h4>
+        <ul>
+            <li><b>none</b> - Returns all Pokemon in the database.</li>
+        </ul>
+        <h4>Returns</h4>
+        <p>A JSON array of Pokemon objects in the format:</p>
+        <pre>[{"id": "001", "num": "001", "name": "Bulbasaur", "type": ["Grass", "Poison"], ...}]</pre>
+        <h4>Examples</h4>
+        <p><b>Request:</b> /api/getAllPokemon</p>
+        <p><b>Result:</b> [{"id": "001", "num": "001", "name": "Bulbasaur", ...}]...</p>
+    </div>
+
+    <div id="getPokemonWeaknesses">
+        <h3>/api/getWeaknesses</h3>
+        <h4>Query Params</h4>
+        <ul>
+            <li><b>name</b> (string) - The Pokemon's name to search for.</li>
+        </ul>
+        <h4>Returns</h4>
+        <p>A JSON object with the Pokemon's weaknesses:</p>
+        <pre>{"weaknesses": ["Fire", "Psychic"]}</pre>
+        <h4>Examples</h4>
+        <p><b>Request:</b> /api/getWeaknesses?name=Bulbasaur</p>
+        <p><b>Result:</b> {"weaknesses": ["Fire", "Psychic"]}...</p>
+    </div>
+
+    <div id="getPokemonByHeightWeight">
+        <h3>/api/getHeightWeight</h3>
+        <h4>Query Params</h4>
+        <ul>
+            <li><b>minHeight</b> (number) - Minimum height to filter.</li>
+            <li><b>maxHeight</b> (number) - Maximum height to filter.</li>
+            <li><b>minWeight</b> (number) - Minimum weight to filter.</li>
+            <li><b>maxWeight</b> (number) - Maximum weight to filter.</li>
+        </ul>
+        <h4>Returns</h4>
+        <p>A JSON array of Pokemon objects that match the height and weight criteria:</p>
+        <pre>[{"id": "001", "num": "001", "name": "Bulbasaur", "height": "0.7", "weight": "6.9"}, ...]</pre>
+        <h4>Examples</h4>
+        <p><b>Request:</b> /api/getHeightWeight?minHeight=0.5&maxHeight=1.5&minWeight=5&maxWeight=100</p>
+        <p><b>Result:</b> [{"id": "001", "num": "001", "name": "Bulbasaur", ...}]...</p>
+
+        <p><b>Invalid Request:</b> /api/getHeightWeight?minHeight=0.5&maxHeight=one&minWeight=5&maxWeight=100</p>
+        <p><b>Result:</b> {"message": "All fields must be valid numbers.", "id": "invalidParams"}</p>
+    </div>
+
+    <div id="getPokemonByType">
+        <h3>/api/getType</h3>
+        <h4>Query Params</h4>
+        <ul>
+            <li><b>type</b> (string) - The type of Pokemon to search for.</li>
+        </ul>
+        <h4>Returns</h4>
+        <p>A JSON array of Pokemon objects of the specified type:</p>
+        <pre>[{"id": "001", "num": "001", "name": "Bulbasaur", "type": ["Grass", "Poison"], ...}]</pre>
+        <h4>Examples</h4>
+        <p><b>Request:</b> /api/getType?type=Grass</p>
+        <p><b>Result:</b> [{"id": "001", "num": "001", "name": "Bulbasaur", ...}]...</p>
+    </div>
+
+    <div id="addPokemon">
+        <h3>/api/addPokemon</h3>
+        <h4>Supported Body Formats</h4>
+        <p><b>application/json</b> and <b>application/x-www-form-urlencoded</b></p>
+        <h4>Body Params</h4>
+        <ul>
+            <li><b>name</b> (string) - The name of the Pokemon.</li>
+            <li><b>num</b> (number) - The Pokedex number of the Pokemon.</li>
+            <li><b>type</b> (string) - The primary type of the Pokemon. The second type can be left empty.</li>
+            <li><b>height</b> (number) - The height of the Pokemon in meters.</li>
+            <li><b>weight</b> (number) - The weight of the Pokemon in kilograms.</li>
+        </ul>
+        <h4>Returns</h4>
+        <p>A JSON object with the newly created Pokemon:</p>
+        <pre>{"message": "New Pokemon created successfully!", "newPokemon": {"id": "152", "num": "152", "name": "Chikorita", ...}}</pre>
+        <h4>Body Example</h4>
+        <pre>{
+      "name": "Chikorita",
+      "num": 152,
+      "type": "Grass",
+      "height": 1.2,
+      "weight": 12.0
+    }</pre>
+        <h4>Examples</h4>
+        <p><b>Request:</b> /api/addPokemon</p>
+        <p><b>Body:</b> {
+      "name": "Chikorita",
+      "num": 152,
+      "type": "Grass",
+      "height": 1.2,
+      "weight": 12.0
+    }</p>
+        <p><b>Result:</b> {"message": "New Pokemon created successfully!", "newPokemon": {...}}...</p>
+    
+        <p><b>Invalid Request:</b> /api/addPokemon</p>
+        <p><b>Body:</b> {"name": "Chikorita", "num": "two", "type": "Grass", "height": "one", "weight": "12.0"}</p>
+        <p><b>Result:</b> {"message": "num, height, and weight must all be valid numbers.", "id": "invalidParams"}</p>
+    </div>
+
+    <div id="addRanking">
+        <h3>/api/addRanking</h3>
+        <h4>Supported Body Formats</h4>
+        <p><b>application/json</b> and <b>application/x-www-form-urlencoded</b></p>
+        <h4>Body Params</h4>
+        <ul>
+            <li><b>name</b> (string) - The name of the Pokemon.</li>
+            <li><b>ranking</b> (string) - The tier ranking (S, A, B, C, D, F).</li>
+        </ul>
+        <h4>Returns</h4>
+        <p>A JSON object indicating success or failure:</p>
+        <pre>{"message": "Ranking added to Bulbasaur."}</pre>
+        <h4>Body Example</h4>
+        <pre>{
+  "id": "001",
+  "num": "001",
+  "name": "Bulbasaur",
+  "type": ["Grass", "Poison"],
+  "height": "0.7",
+  "weight": "6.9",
+  "weaknesses": ["Fire", "Psychic"],
+  "ranking": "A"
+}</pre>
+        <h4>Examples</h4>
+        <p><b>Request:</b> /api/addRanking</p>
+        <p><b>Result:</b> {"message": "Ranking added to Bulbasaur."}...</p>
+    </div>
+
+</body>
+
+</html>

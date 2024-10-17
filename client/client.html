@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Pokedex API</title>
+    <link rel="stylesheet" type="text/css" href="client-style.css">
+    <script src="client.js"></script>
+</head>
+
+<body>
+    <h1>Pokedex API</h1>
+    <a href="/doc.html" target="_blank">View API Documentation</a>
+
+    <div id="getAllPokemon">
+        <h3>/api/getAllPokemon</h3>
+        <form id="getAllPokemonForm" action="/api/getAllPokemon" method="get">
+            <label>
+                <input type="radio" name="method" value="GET" checked> GET
+            </label>
+            <label>
+                <input type="radio" name="method" value="HEAD"> HEAD
+            </label>
+            <input type="submit" value="Send Request">
+        </form>
+        <div id="getAllPokemonContent" class="scrollable"></div>
+    </div>
+    
+    <div id="getPokemonWeaknesses">
+        <h3>/api/getWeaknesses</h3>
+        <form id="getPokemonWeaknessesForm" action="/api/getWeaknesses" method="post">
+            <label for="pokemonName">Name: </label>
+            <input type="text" name="name" id="pokemonName" required>
+            <label>
+                <input type="radio" name="method" value="GET" checked> GET
+            </label>
+            <label>
+                <input type="radio" name="method" value="HEAD"> HEAD
+            </label>
+            <input type="submit" value="Send Request">
+        </form>
+        <div id="getPokemonWeaknessesContent" class="scrollable"></div>
+    </div>
+    
+    <div id="getPokemonByHeightWeight">
+        <h3>/api/getHeightWeight</h3>
+        <form id="getPokemonByHeightWeightForm" action="/api/getHeightWeight" method="post">
+            <label for="minHeight">Min Height: </label>
+            <input type="text" name="minHeight" id="minHeight" required>
+            <label for="maxHeight">Max Height: </label>
+            <input type="text" name="maxHeight" id="maxHeight" required>
+            <label for="minWeight">Min Weight: </label>
+            <input type="text" name="minWeight" id="minWeight" required>
+            <label for="maxWeight">Max Weight: </label>
+            <input type="text" name="maxWeight" id="maxWeight" required>
+            <label>
+                <input type="radio" name="method" value="GET" checked> GET
+            </label>
+            <label>
+                <input type="radio" name="method" value="HEAD"> HEAD
+            </label>
+            <input type="submit" value="Send Request">
+        </form>
+        <div id="getPokemonByHeightWeightContent" class="scrollable"></div>
+    </div>
+    
+    <div id="getPokemonByType">
+        <h3>/api/getType</h3>
+        <form id="getPokemonByTypeForm" action="/api/getType" method="post">
+            <label for="pokemonType">Type: </label>
+            <select name="type" id="pokemonType" required>
+                <option value="Normal">Normal</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+                <option value="Electric">Electric</option>
+                <option value="Grass">Grass</option>
+                <option value="Ice">Ice</option>
+                <option value="Fighting">Fighting</option>
+                <option value="Poison">Poison</option>
+                <option value="Ground">Ground</option>
+                <option value="Flying">Flying</option>
+                <option value="Psychic">Psychic</option>
+                <option value="Bug">Bug</option>
+                <option value="Rock">Rock</option>
+                <option value="Ghost">Ghost</option>
+                <option value="Dragon">Dragon</option>
+                <option value="Dark">Dark</option>
+                <option value="Steel">Steel</option>
+                <option value="Fairy">Fairy</option>
+            </select>
+            <label>
+                <input type="radio" name="method" value="GET" checked> GET
+            </label>
+            <label>
+                <input type="radio" name="method" value="HEAD"> HEAD
+            </label>
+            <input type="submit" value="Send Request">
+        </form>
+        <div id="getPokemonByTypeContent" class="scrollable"></div>
+    </div>
+    
+    <div id="addPokemon">
+        <h3>/api/addPokemon</h3>
+        <form id="addPokemonForm" action="/api/addPokemon" method="post">
+            <label for="pokemonNameAdd">Name: </label>
+            <input type="text" name="name" id="pokemonNameAdd" required>
+            <label for="pokedexNumber">Pokedex Number: </label>
+            <input type="text" name="num" id="pokedexNumber" required>
+            <label for="pokemonTypeAdd">Type: </label>
+            <select name="type" id="pokemonTypeAdd" required>
+                <option value="Normal">Normal</option>
+                <option value="Fire">Fire</option>
+                <option value="Water">Water</option>
+                <option value="Electric">Electric</option>
+                <option value="Grass">Grass</option>
+                <option value="Ice">Ice</option>
+                <option value="Fighting">Fighting</option>
+                <option value="Poison">Poison</option>
+                <option value="Ground">Ground</option>
+                <option value="Flying">Flying</option>
+                <option value="Psychic">Psychic</option>
+                <option value="Bug">Bug</option>
+                <option value="Rock">Rock</option>
+                <option value="Ghost">Ghost</option>
+                <option value="Dragon">Dragon</option>
+                <option value="Dark">Dark</option>
+                <option value="Steel">Steel</option>
+                <option value="Fairy">Fairy</option>
+            </select>
+            <label for="height">Height: </label>
+            <input type="text" name="height" id="height" required>
+            <label for="weight">Weight: </label>
+            <input type="text" name="weight" id="weight" required>
+            <input type="submit" value="Send Request">
+        </form>
+        <div id="addPokemonContent" class="scrollable"></div>
+    </div>
+    
+    <div id="addRanking">
+        <h3>/api/addRanking</h3>
+        <form id="addRankingForm" action="/api/addRanking" method="post">
+            <label for="pokemonNameRanking">Name: </label>
+            <input type="text" name="name" id="pokemonNameRanking" required>
+            <label for="ranking">Ranking: </label>
+            <select name="ranking" id="ranking" required>
+                <option value="S">S</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="F">F</option>
+            </select>
+            <input type="submit" value="Send Request">
+        </form>
+        <div id="addRankingContent" class="scrollable"></div>
+    </div>
+
+</body>
+
+</html>
